@@ -55,7 +55,7 @@ export const AboutScreen = () => {
         </View>
       </View>
 
-      <View style={{ height: spacing.xxl }} />
+      <View style={{ height: 100 }} />
     </ScrollView>
     </SafeAreaView>
   );

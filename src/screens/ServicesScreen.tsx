@@ -32,7 +32,7 @@ export const ServicesScreen = () => {
       </ScrollView>
 
       {/* Services list */}
-      <ScrollView style={styles.list} contentContainerStyle={styles.listContent}>
+      <ScrollView style={styles.list} contentContainerStyle={[styles.listContent, { paddingBottom: 100 }]}>
         {filtered.map(service => (
           <ServiceCard
             key={service.id}
@@ -45,7 +45,7 @@ export const ServicesScreen = () => {
 
       {/* Sticky book button */}
       <View style={styles.stickyBar}>
-        <BookButton />
+        <BookButton style={{ borderRadius: 999 }} />
       </View>
     </SafeAreaView>
   );

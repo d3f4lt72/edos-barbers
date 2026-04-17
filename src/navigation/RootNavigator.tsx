@@ -1,9 +1,10 @@
 import React from 'react';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
-import { colors, borderRadius } from '../theme';
+import { colors } from '../theme';
 import {
   WelcomeScreen,
   HomeScreen,
@@ -18,6 +19,17 @@ import {
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+function TabIcon({ name, color, focused }: { name: React.ComponentProps<typeof Feather>['name']; color: string; focused: boolean }) {
+  return (
+    <View style={focused
+      ? { backgroundColor: 'rgba(255,255,255,0.15)', borderRadius: 20, width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }
+      : { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }
+    }>
+      <Feather name={name} size={22} color={color} />
+    </View>
+  );
+}
+
 function MainTabs() {
   return (
     <Tab.Navigator
@@ -27,48 +39,67 @@ function MainTabs() {
         headerTintColor: colors.charcoal,
         headerTitleStyle: { fontWeight: '700', letterSpacing: 1 },
         headerShadowVisible: false,
+        tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: colors.white,
-          borderTopColor: colors.warmGrey,
-          borderTopWidth: 1,
-          paddingBottom: 8,
-          paddingTop: 8,
+          position: 'absolute',
+          bottom: 20,
+          left: 20,
+          right: 20,
+          borderRadius: 32,
           height: 64,
-          borderTopLeftRadius: 16,
-          borderTopRightRadius: 16,
+          backgroundColor: colors.charcoal,
+          borderTopWidth: 0,
+          elevation: 12,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 6 },
+          shadowOpacity: 0.25,
+          shadowRadius: 16,
+          paddingBottom: 0,
+          paddingTop: 0,
         },
-        tabBarItemStyle: {
-          borderRadius: borderRadius.full,
-        },
-        tabBarActiveTintColor: colors.gold,
-        tabBarInactiveTintColor: colors.mutedText,
-        tabBarLabelStyle: { fontSize: 10, fontWeight: '600', marginTop: 2 },
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarInactiveTintColor: 'rgba(255,255,255,0.4)',
       }}
     >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
-        options={{ headerShown: false, tabBarLabel: 'Start', tabBarIcon: ({ color, size }) => <Feather name="home" size={size} color={color} /> }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => <TabIcon name="home" color={color} focused={focused} />,
+        }}
       />
       <Tab.Screen
         name="Services"
         component={ServicesScreen}
-        options={{ title: 'Leistungen', tabBarLabel: 'Leistungen', tabBarIcon: ({ color, size }) => <Feather name="scissors" size={size} color={color} /> }}
+        options={{
+          title: 'Leistungen',
+          tabBarIcon: ({ color, focused }) => <TabIcon name="scissors" color={color} focused={focused} />,
+        }}
       />
       <Tab.Screen
         name="Gallery"
         component={GalleryScreen}
-        options={{ title: 'Galerie', tabBarLabel: 'Galerie', tabBarIcon: ({ color, size }) => <Feather name="image" size={size} color={color} /> }}
+        options={{
+          title: 'Galerie',
+          tabBarIcon: ({ color, focused }) => <TabIcon name="image" color={color} focused={focused} />,
+        }}
       />
       <Tab.Screen
         name="About"
         component={AboutScreen}
-        options={{ title: 'Über uns', tabBarLabel: 'Über uns', tabBarIcon: ({ color, size }) => <Feather name="users" size={size} color={color} /> }}
+        options={{
+          title: 'Über uns',
+          tabBarIcon: ({ color, focused }) => <TabIcon name="users" color={color} focused={focused} />,
+        }}
       />
       <Tab.Screen
         name="Contact"
         component={ContactScreen}
-        options={{ title: 'Kontakt', tabBarLabel: 'Kontakt', tabBarIcon: ({ color, size }) => <Feather name="map-pin" size={size} color={color} /> }}
+        options={{
+          title: 'Kontakt',
+          tabBarIcon: ({ color, focused }) => <TabIcon name="map-pin" color={color} focused={focused} />,
+        }}
       />
     </Tab.Navigator>
   );

@@ -31,7 +31,7 @@ export const GalleryScreen = () => {
         data={placeholders}
         keyExtractor={item => item.id}
         numColumns={2}
-        contentContainerStyle={styles.grid}
+        contentContainerStyle={[styles.grid, { paddingBottom: 100 }]}
         columnWrapperStyle={styles.row}
         renderItem={() => (
           <ImagePlaceholder width={ITEM_SIZE} height={ITEM_SIZE} style={{ marginBottom: spacing.sm }} />
