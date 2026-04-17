@@ -3,8 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
-import { colors } from '../theme';
+import { colors, borderRadius } from '../theme';
 import {
+  WelcomeScreen,
   HomeScreen,
   ServicesScreen,
   GalleryScreen,
@@ -30,12 +31,18 @@ function MainTabs() {
           backgroundColor: colors.white,
           borderTopColor: colors.warmGrey,
           borderTopWidth: 1,
-          paddingBottom: 4,
-          height: 60,
+          paddingBottom: 8,
+          paddingTop: 8,
+          height: 64,
+          borderTopLeftRadius: 16,
+          borderTopRightRadius: 16,
+        },
+        tabBarItemStyle: {
+          borderRadius: borderRadius.full,
         },
         tabBarActiveTintColor: colors.gold,
         tabBarInactiveTintColor: colors.mutedText,
-        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
+        tabBarLabelStyle: { fontSize: 10, fontWeight: '600', marginTop: 2 },
       }}
     >
       <Tab.Screen
@@ -71,6 +78,7 @@ export function RootNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
         <Stack.Screen
           name="Membership"

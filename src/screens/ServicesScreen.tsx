@@ -21,9 +21,12 @@ export const ServicesScreen = () => {
         contentContainerStyle={styles.tabBarContent}
       >
         {categories.map(cat => (
-          <TouchableOpacity key={cat} style={styles.tab} onPress={() => setActiveCategory(cat)}>
+          <TouchableOpacity
+            key={cat}
+            style={[styles.tab, activeCategory === cat && styles.tabActive]}
+            onPress={() => setActiveCategory(cat)}
+          >
             <Text style={[styles.tabText, activeCategory === cat && styles.tabTextActive]}>{cat}</Text>
-            {activeCategory === cat && <View style={styles.tabUnderline} />}
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -50,17 +53,23 @@ export const ServicesScreen = () => {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.cream },
-  tabBar: { borderBottomWidth: 1, borderBottomColor: colors.warmGrey, flexGrow: 0 },
-  tabBarContent: { paddingHorizontal: spacing.md },
+  tabBar: { flexGrow: 0, borderBottomWidth: 1, borderBottomColor: colors.warmGrey },
+  tabBarContent: { paddingHorizontal: spacing.md, alignItems: 'center' },
   tab: {
     paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-    marginRight: spacing.xs,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.full,
+    borderWidth: 1.5,
+    borderColor: colors.warmGrey,
+    marginRight: spacing.sm,
+    marginVertical: spacing.sm,
   },
-  tabText: { fontSize: 14, color: colors.mutedText, fontWeight: '500' },
+  tabActive: {
+    backgroundColor: colors.gold,
+    borderColor: colors.gold,
+  },
+  tabText: { fontSize: 13, color: colors.mutedText, fontWeight: '500' },
   tabTextActive: { color: colors.charcoal, fontWeight: '700' },
-  tabUnderline: { height: 2, backgroundColor: colors.gold, width: '100%', marginTop: 4 },
   list: { flex: 1 },
   listContent: { padding: spacing.lg },
   stickyBar: {
