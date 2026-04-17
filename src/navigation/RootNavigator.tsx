@@ -21,7 +21,11 @@ function MainTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerStyle: { backgroundColor: colors.cream },
+        headerTintColor: colors.charcoal,
+        headerTitleStyle: { fontWeight: '700', letterSpacing: 1 },
+        headerShadowVisible: false,
         tabBarStyle: {
           backgroundColor: colors.white,
           borderTopColor: colors.warmGrey,
@@ -37,27 +41,27 @@ function MainTabs() {
       <Tab.Screen
         name="Home"
         component={HomeScreen}
-        options={{ tabBarLabel: 'Start', tabBarIcon: ({ color, size }) => <Feather name="home" size={size} color={color} /> }}
+        options={{ headerShown: false, tabBarLabel: 'Start', tabBarIcon: ({ color, size }) => <Feather name="home" size={size} color={color} /> }}
       />
       <Tab.Screen
         name="Services"
         component={ServicesScreen}
-        options={{ tabBarLabel: 'Leistungen', tabBarIcon: ({ color, size }) => <Feather name="scissors" size={size} color={color} /> }}
+        options={{ title: 'Leistungen', tabBarLabel: 'Leistungen', tabBarIcon: ({ color, size }) => <Feather name="scissors" size={size} color={color} /> }}
       />
       <Tab.Screen
         name="Gallery"
         component={GalleryScreen}
-        options={{ tabBarLabel: 'Galerie', tabBarIcon: ({ color, size }) => <Feather name="image" size={size} color={color} /> }}
+        options={{ title: 'Galerie', tabBarLabel: 'Galerie', tabBarIcon: ({ color, size }) => <Feather name="image" size={size} color={color} /> }}
       />
       <Tab.Screen
         name="About"
         component={AboutScreen}
-        options={{ tabBarLabel: 'Über uns', tabBarIcon: ({ color, size }) => <Feather name="users" size={size} color={color} /> }}
+        options={{ title: 'Über uns', tabBarLabel: 'Über uns', tabBarIcon: ({ color, size }) => <Feather name="users" size={size} color={color} /> }}
       />
       <Tab.Screen
         name="Contact"
         component={ContactScreen}
-        options={{ tabBarLabel: 'Kontakt', tabBarIcon: ({ color, size }) => <Feather name="map-pin" size={size} color={color} /> }}
+        options={{ title: 'Kontakt', tabBarLabel: 'Kontakt', tabBarIcon: ({ color, size }) => <Feather name="map-pin" size={size} color={color} /> }}
       />
     </Tab.Navigator>
   );

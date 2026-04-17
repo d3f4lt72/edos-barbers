@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { colors, spacing, shadows } from '../theme';
 import { TeamMemberCard } from '../components';
@@ -13,6 +14,7 @@ const values = [
 
 export const AboutScreen = () => {
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.cream }}>
     <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
       {/* Brand story */}
       <View style={styles.section}>
@@ -55,6 +57,7 @@ export const AboutScreen = () => {
 
       <View style={{ height: spacing.xxl }} />
     </ScrollView>
+    </SafeAreaView>
   );
 };
 

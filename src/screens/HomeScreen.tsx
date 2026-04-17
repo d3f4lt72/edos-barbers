@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing, borderRadius } from '../theme';
 import { ImagePlaceholder, BookButton } from '../components';
 
@@ -17,6 +18,7 @@ const hours = [
 
 export const HomeScreen = ({ navigation }: any) => {
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.cream }}>
     <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
       {/* Header */}
       <View style={styles.header}>
@@ -74,6 +76,7 @@ export const HomeScreen = ({ navigation }: any) => {
 
       <View style={{ height: spacing.xxl }} />
     </ScrollView>
+    </SafeAreaView>
   );
 };
 
