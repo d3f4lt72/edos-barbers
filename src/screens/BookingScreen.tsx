@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing } from '../theme';
 import { BookButton } from '../components';
 
 export const BookingScreen = () => {
   return (
-    <SafeAreaView style={styles.screen}>
+    <SafeAreaView style={styles.screen} edges={['bottom']}>
       <View style={styles.content}>
         <Text style={styles.brand}>EDOS BARBERS</Text>
         <View style={styles.divider} />

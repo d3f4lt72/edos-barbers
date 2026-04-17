@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Linking, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { colors, spacing, borderRadius, shadows } from '../theme';
 import { ImagePlaceholder } from '../components';
@@ -12,6 +13,7 @@ const hours = [
 
 export const ContactScreen = () => {
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.cream }} edges={['bottom']}>
     <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
       {/* Contact info card */}
       <View style={styles.card}>
@@ -84,6 +86,7 @@ export const ContactScreen = () => {
 
       <View style={{ height: spacing.xxl }} />
     </ScrollView>
+    </SafeAreaView>
   );
 };
 

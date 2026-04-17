@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing } from '../theme';
 import { MembershipCard } from '../components';
 import { membershipPlans } from '../data/membership';
 
 export const MembershipScreen = () => {
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.cream }} edges={['bottom']}>
     <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Text style={styles.title}>Mitgliedschaft</Text>
@@ -25,6 +27,7 @@ export const MembershipScreen = () => {
       </View>
       <View style={{ height: spacing.xxl }} />
     </ScrollView>
+    </SafeAreaView>
   );
 };
 

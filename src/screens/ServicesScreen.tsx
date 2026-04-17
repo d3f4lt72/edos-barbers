@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing, borderRadius } from '../theme';
 import { ServiceCard, BookButton } from '../components';
 import { services, ServiceCategory } from '../data/services';
@@ -11,7 +12,7 @@ export const ServicesScreen = () => {
   const filtered = services.filter(s => s.category === activeCategory);
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <SafeAreaView style={styles.screen} edges={['bottom']}>
       {/* Filter tabs */}
       <ScrollView
         horizontal

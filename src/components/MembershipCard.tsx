@@ -26,6 +26,7 @@ export const MembershipCard: React.FC<Props> = ({ title, price, period, perks, h
       {perks.map((perk, i) => (
         <Text key={i} style={styles.perk}>• {perk}</Text>
       ))}
+      {/* Dead button for V1 — no booking integration yet */}
       <TouchableOpacity style={[styles.button, highlighted && styles.highlightedButton]} activeOpacity={1}>
         <Text style={[styles.buttonLabel, highlighted && styles.highlightedButtonLabel]}>Auswählen</Text>
       </TouchableOpacity>

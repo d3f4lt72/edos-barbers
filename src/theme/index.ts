@@ -10,7 +10,7 @@ export const colors = {
 export const typography = {
   displayFont: 'PlayfairDisplay_700Bold',
   displayFontItalic: 'PlayfairDisplay_700Bold_Italic',
-  headingFont: 'PlayfairDisplay_600SemiBold',
+  headingFont: 'PlayfairDisplay_700Bold',
   bodyFont: 'Inter_400Regular',
   labelFont: 'Inter_500Medium',
   priceFont: 'Inter_700Bold',

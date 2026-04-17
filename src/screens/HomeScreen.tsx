@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing, borderRadius } from '../theme';
 import { ImagePlaceholder, BookButton } from '../components';
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.charcoal,
     letterSpacing: 3,
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    fontFamily: 'PlayfairDisplay_700Bold',
   },
   tagline: { fontSize: 14, color: colors.mutedText, letterSpacing: 1, marginTop: spacing.xs },
   ctaRow: { flexDirection: 'row', gap: spacing.sm, padding: spacing.lg },
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.charcoal,
     marginBottom: spacing.md,
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    fontFamily: 'PlayfairDisplay_700Bold',
   },
   newsScroll: { marginHorizontal: -spacing.lg, paddingHorizontal: spacing.lg },
   newsCard: { width: 180, marginRight: spacing.md },

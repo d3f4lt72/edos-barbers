@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet, Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, spacing } from '../theme';
 import { ImagePlaceholder } from '../components';
 
@@ -14,7 +15,7 @@ export const GalleryScreen = () => {
   const [activeTab, setActiveTab] = useState('Alle');
 
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen} edges={['bottom']}>
       {/* Tabs */}
       <View style={styles.tabBar}>
         {TABS.map(tab => (
@@ -36,7 +37,7 @@ export const GalleryScreen = () => {
           <ImagePlaceholder width={ITEM_SIZE} height={ITEM_SIZE} style={{ marginBottom: spacing.sm }} />
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
