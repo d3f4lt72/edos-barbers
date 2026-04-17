@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { useFonts } from 'expo-font';
+import {
+  PlayfairDisplay_400Regular,
+  PlayfairDisplay_700Bold,
+  PlayfairDisplay_700Bold_Italic,
+} from '@expo-google-fonts/playfair-display';
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_700Bold,
+} from '@expo-google-fonts/inter';
+import { View, ActivityIndicator } from 'react-native';
+import { RootNavigator } from './src/navigation/RootNavigator';
+import { colors } from './src/theme';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsLoaded] = useFonts({
+    PlayfairDisplay_400Regular,
+    PlayfairDisplay_700Bold,
+    PlayfairDisplay_700Bold_Italic,
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_700Bold,
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!fontsLoaded) {
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.cream, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator color={colors.gold} />
+      </View>
+    );
+  }
+
+  return <RootNavigator />;
+}
