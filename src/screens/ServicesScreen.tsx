@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors, spacing, borderRadius } from '../theme';
+import { colors, spacing, borderRadius, shadows } from '../theme';
 import { ServiceCard, BookButton } from '../components';
 import { services, ServiceCategory } from '../data/services';
 
@@ -13,7 +13,7 @@ export const ServicesScreen = () => {
 
   return (
     <SafeAreaView style={styles.screen} edges={['bottom']}>
-      {/* Filter tabs */}
+      {/* Category pills */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -25,6 +25,7 @@ export const ServicesScreen = () => {
             key={cat}
             style={[styles.tab, activeCategory === cat && styles.tabActive]}
             onPress={() => setActiveCategory(cat)}
+            activeOpacity={0.8}
           >
             <Text style={[styles.tabText, activeCategory === cat && styles.tabTextActive]}>{cat}</Text>
           </TouchableOpacity>
@@ -32,7 +33,11 @@ export const ServicesScreen = () => {
       </ScrollView>
 
       {/* Services list */}
-      <ScrollView style={styles.list} contentContainerStyle={[styles.listContent, { paddingBottom: 100 }]}>
+      <ScrollView
+        style={styles.list}
+        contentContainerStyle={[styles.listContent, { paddingBottom: 120 }]}
+        showsVerticalScrollIndicator={false}
+      >
         {filtered.map(service => (
           <ServiceCard
             key={service.id}
@@ -45,7 +50,7 @@ export const ServicesScreen = () => {
 
       {/* Sticky book button */}
       <View style={styles.stickyBar}>
-        <BookButton style={{ borderRadius: 999 }} />
+        <BookButton />
       </View>
     </SafeAreaView>
   );
@@ -53,29 +58,47 @@ export const ServicesScreen = () => {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.cream },
-  tabBar: { flexGrow: 0, borderBottomWidth: 1, borderBottomColor: colors.warmGrey },
-  tabBarContent: { paddingHorizontal: spacing.md, alignItems: 'center' },
+
+  tabBar: {
+    flexGrow: 0,
+    backgroundColor: colors.cream,
+  },
+  tabBarContent: {
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    gap: spacing.sm,
+  },
   tab: {
     paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
+    paddingVertical: 9,
     borderRadius: borderRadius.full,
+    backgroundColor: colors.white,
     borderWidth: 1.5,
     borderColor: colors.warmGrey,
-    marginRight: spacing.sm,
-    marginVertical: spacing.sm,
+    ...shadows.card,
   },
   tabActive: {
-    backgroundColor: colors.gold,
-    borderColor: colors.gold,
+    backgroundColor: colors.charcoal,
+    borderColor: colors.charcoal,
   },
-  tabText: { fontSize: 13, color: colors.mutedText, fontWeight: '500' },
-  tabTextActive: { color: colors.charcoal, fontWeight: '700' },
+  tabText: {
+    fontSize: 13,
+    color: colors.mutedText,
+    fontFamily: 'Inter_500Medium',
+  },
+  tabTextActive: {
+    color: colors.cream,
+    fontFamily: 'Inter_700Bold',
+  },
+
   list: { flex: 1 },
   listContent: { padding: spacing.lg },
+
   stickyBar: {
-    padding: spacing.md,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    backgroundColor: colors.cream,
     borderTopWidth: 1,
     borderTopColor: colors.warmGrey,
-    backgroundColor: colors.cream,
   },
 });

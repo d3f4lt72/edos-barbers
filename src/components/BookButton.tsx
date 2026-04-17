@@ -9,7 +9,7 @@ interface Props {
 
 export const BookButton: React.FC<Props> = ({ label = 'Jetzt Buchen', style }) => {
   return (
-    <TouchableOpacity style={[styles.button, style]} activeOpacity={1}>
+    <TouchableOpacity style={[styles.button, style]} activeOpacity={0.9}>
       <Text style={styles.label}>{label}</Text>
     </TouchableOpacity>
   );
@@ -18,15 +18,16 @@ export const BookButton: React.FC<Props> = ({ label = 'Jetzt Buchen', style }) =
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.gold,
-    paddingVertical: spacing.md,
+    paddingVertical: spacing.md + 2,
     paddingHorizontal: spacing.xl,
-    borderRadius: borderRadius.sm,
+    borderRadius: borderRadius.full,
     alignItems: 'center',
   },
   label: {
     color: colors.charcoal,
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
-    letterSpacing: 0.5,
+    fontFamily: 'Inter_700Bold',
+    letterSpacing: 0.6,
   },
 });

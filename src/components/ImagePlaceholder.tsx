@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle } from 'react-native';
+import { View, Text, StyleSheet, ViewStyle, DimensionValue } from 'react-native';
 import { colors } from '../theme';
 
 interface Props {
-  width: number | string;
-  height: number | string;
+  width: DimensionValue;
+  height: DimensionValue;
   style?: ViewStyle;
   circular?: boolean;
 }

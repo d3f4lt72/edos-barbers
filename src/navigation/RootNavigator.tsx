@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -19,15 +19,32 @@ import {
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function TabIcon({ name, color, focused }: { name: React.ComponentProps<typeof Feather>['name']; color: string; focused: boolean }) {
-  return (
-    <View style={focused
-      ? { backgroundColor: 'rgba(255,255,255,0.15)', borderRadius: 20, width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }
-      : { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }
-    }>
-      <Feather name={name} size={22} color={color} />
-    </View>
-  );
+type FeatherName = React.ComponentProps<typeof Feather>['name'];
+
+function TabIcon({ name, label, focused }: { name: FeatherName; label: string; focused: boolean }) {
+  if (focused) {
+    return (
+      <View style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: colors.white,
+        borderRadius: 20,
+        paddingHorizontal: 11,
+        paddingVertical: 7,
+        gap: 5,
+      }}>
+        <Feather name={name} size={15} color={colors.charcoal} />
+        <Text style={{
+          fontSize: 11,
+          fontWeight: '700',
+          color: colors.charcoal,
+          fontFamily: 'Inter_700Bold',
+          letterSpacing: 0.2,
+        }}>{label}</Text>
+      </View>
+    );
+  }
+  return <Feather name={name} size={20} color="rgba(255,255,255,0.4)" />;
 }
 
 function MainTabs() {
@@ -37,27 +54,33 @@ function MainTabs() {
         headerShown: true,
         headerStyle: { backgroundColor: colors.cream },
         headerTintColor: colors.charcoal,
-        headerTitleStyle: { fontWeight: '700', letterSpacing: 1 },
+        headerTitleStyle: {
+          fontFamily: 'PlayfairDisplay_700Bold',
+          fontSize: 17,
+          letterSpacing: 0.5,
+        },
         headerShadowVisible: false,
         tabBarShowLabel: false,
         tabBarStyle: {
           position: 'absolute',
           bottom: 20,
-          left: 20,
-          right: 20,
-          borderRadius: 32,
-          height: 64,
+          left: 16,
+          right: 16,
+          borderRadius: 36,
+          height: 62,
           backgroundColor: colors.charcoal,
           borderTopWidth: 0,
-          elevation: 12,
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 6 },
-          shadowOpacity: 0.25,
-          shadowRadius: 16,
           paddingBottom: 0,
           paddingTop: 0,
+          ...{
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 8 },
+            shadowOpacity: 0.28,
+            shadowRadius: 20,
+            elevation: 16,
+          },
         },
-        tabBarActiveTintColor: '#FFFFFF',
+        tabBarActiveTintColor: colors.charcoal,
         tabBarInactiveTintColor: 'rgba(255,255,255,0.4)',
       }}
     >
@@ -66,7 +89,7 @@ function MainTabs() {
         component={HomeScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ color, focused }) => <TabIcon name="home" color={color} focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="home" label="Home" focused={focused} />,
         }}
       />
       <Tab.Screen
@@ -74,7 +97,7 @@ function MainTabs() {
         component={ServicesScreen}
         options={{
           title: 'Leistungen',
-          tabBarIcon: ({ color, focused }) => <TabIcon name="scissors" color={color} focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="scissors" label="Services" focused={focused} />,
         }}
       />
       <Tab.Screen
@@ -82,7 +105,7 @@ function MainTabs() {
         component={GalleryScreen}
         options={{
           title: 'Galerie',
-          tabBarIcon: ({ color, focused }) => <TabIcon name="image" color={color} focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="image" label="Galerie" focused={focused} />,
         }}
       />
       <Tab.Screen
@@ -90,7 +113,7 @@ function MainTabs() {
         component={AboutScreen}
         options={{
           title: 'Über uns',
-          tabBarIcon: ({ color, focused }) => <TabIcon name="users" color={color} focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="users" label="Team" focused={focused} />,
         }}
       />
       <Tab.Screen
@@ -98,7 +121,7 @@ function MainTabs() {
         component={ContactScreen}
         options={{
           title: 'Kontakt',
-          tabBarIcon: ({ color, focused }) => <TabIcon name="map-pin" color={color} focused={focused} />,
+          tabBarIcon: ({ focused }) => <TabIcon name="map-pin" label="Kontakt" focused={focused} />,
         }}
       />
     </Tab.Navigator>
@@ -116,10 +139,12 @@ export function RootNavigator() {
           component={MembershipScreen}
           options={{
             title: 'Mitgliedschaft',
-            headerStyle: { backgroundColor: colors.cream },
-            headerTintColor: colors.charcoal,
-            headerTitleStyle: { fontWeight: '700' },
-            headerBackTitleVisible: false,
+            headerStyle: { backgroundColor: colors.charcoal },
+            headerTintColor: colors.cream,
+            headerTitleStyle: {
+              fontFamily: 'PlayfairDisplay_700Bold',
+              fontSize: 17,
+            },
           }}
         />
         <Stack.Screen
@@ -129,8 +154,10 @@ export function RootNavigator() {
             title: 'Termin buchen',
             headerStyle: { backgroundColor: colors.cream },
             headerTintColor: colors.charcoal,
-            headerTitleStyle: { fontWeight: '700' },
-            headerBackTitleVisible: false,
+            headerTitleStyle: {
+              fontFamily: 'PlayfairDisplay_700Bold',
+              fontSize: 17,
+            },
           }}
         />
       </Stack.Navigator>
